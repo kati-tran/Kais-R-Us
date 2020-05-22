@@ -15,6 +15,29 @@ h1 {
   color: white;
 }
 
+button {
+  border-radius: 4px;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button2 {
+  background-color: #008CBA;
+  color: white;
+
+}
+
+.button2:hover {
+  background-color: #555555;
+  color: white;
+}
+
 .writeup{
 	font-size: 25px;
 	clear:left;

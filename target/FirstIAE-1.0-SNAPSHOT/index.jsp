@@ -8,6 +8,7 @@
 <%Class.forName("com.mysql.cj.jdbc.Driver");%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
+    
     public class Product {
         String URL = "jdbc:mysql://localhost:3306/proj2database";
         String USERNAME = "root";
@@ -77,10 +78,10 @@
 
 			<% while ( products.next()) { %>
 				<div class="column">
-				<div class="content" id="<%= products.getString("id")%>" onclick="sendData(<%= products.getString("id")%>)">
+				<div class="content" id="<%= products.getString("id")%>" onclick="sendData('<%= products.getString("id")%>')">
 				<img src="<%= products.getString("picture")%>" style="width:100%">
                                 <h4><%= products.getString("name")%></h4>
-				<p><b><%= products.getInt("price")%></b></p>
+				<p><b>$<%= products.getInt("price")%></b></p>
 				<div class="texts">
 				<p><b>Type: </b><%= products.getString("type")%>&nbsp&nbsp&nbsp<b>Color: </b><%= products.getString("color")%></p>
 				</div>
@@ -93,12 +94,13 @@
 				var xhr= new XMLHttpRequest(); 
 				xhr.onreadystatechange= function () {
 					if (xhr.readyState== 4 && xhr.status== 200){
-						document.getElementById("poll").innerHTML=this.responseText;
-						//location.href = "desc.php"
+						//document.getElementById("poll").innerHTML=this.responseText;
+						location.href = "productDetails?zip=" + id_name;
 					}
 				} 
 				  xhr.open("POST","helloWorld.do?",true);
 				  xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded"); 
+                                  console.log(id_name);
 				  xhr.send("zip=" +id_name);
 			}
 

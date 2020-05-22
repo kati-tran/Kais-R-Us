@@ -29,8 +29,12 @@ public class HelloServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws java.io.IOException {
+                        
+                String idname = req.getParameter("zip");
+            
 		res.setContentType("text/html");
-                res.sendRedirect("desc.jsp");
+                res.getWriter().write(idname);
+               
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
