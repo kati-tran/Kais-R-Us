@@ -69,6 +69,7 @@ public class productDetails extends HttpServlet {
                 out.println("<li><a href=\"about.jsp\">About</a></li>");
                 out.println("<li><a class=\"active\" href=\"index.jsp\">Store</a></li>");
                 out.println("<li><a>Kati Tran 33574122</a></li>");
+                out.println("<li><a>Jae Yoon Oh 41812159</a></li>");
                 out.println("</ul>");
 
                 out.println("<div class=\"about-section\">");
@@ -97,10 +98,10 @@ public class productDetails extends HttpServlet {
                 out.println("<p><u>Price:</u> $" + products.getInt("price") + "</p>");
                 out.println("<h4><u>Size</u></h4>");
                 out.println("<p id=\"size\">" + products.getString("size") +"</p>");
+                out.println("<button class=\"button\" style=\"padding: 20px; font-size:20px; margin: auto; width: 50%;\" >Add to Cart</button>");
                 out.println("</div>");
-                out.println("<button class=\"button2\">Add to Cart</button>");
+                
                 out.println("</div>");
-
                 
                 out.println("<script type=\"text/javascript\">");
                 out.println(" function replaceIMG(elem){");
@@ -135,7 +136,11 @@ public class productDetails extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(productDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -149,7 +154,11 @@ public class productDetails extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(productDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
