@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -55,7 +56,6 @@ public class productDetails extends HttpServlet {
             selectProduct = connection.prepareStatement("SELECT * FROM items WHERE id='"+ idname + "'");
             
             ResultSet products= selectProduct.executeQuery();
-            
             while ( products.next()) {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
@@ -112,13 +112,15 @@ public class productDetails extends HttpServlet {
                 out.println("</body>");
                 out.println("</html>");
                 
-                
-                
-                
+                HttpSession s = request.getSession(true);
+                s.setAttribute("myId",products.getString("name"));
+ 
             }
            
             response.setContentType("text/html");
             //response.getWriter().write(idname);
+
+            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(productDetails.class.getName()).log(Level.SEVERE, null, ex);
         }
