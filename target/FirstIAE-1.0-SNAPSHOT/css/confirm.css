@@ -1,0 +1,45 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-size: 50px;
+  word-break: break-all;
+}
+
+h2 {
+  font-size: 30px;
+  text-align: center;
+  word-break: break-all;
+}
+
+h3 {
+  text-align: center;
+  word-break: break-all;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 50px
+}
+
+.confirm {
+  width: 50%;
+  background: #eee;
+  margin: auto;
+  padding: 20px 30px;
+}
+
+p{
+    font-size: 15px;
+    letter-spacing: 1px;
+}
