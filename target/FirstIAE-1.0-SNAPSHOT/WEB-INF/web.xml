@@ -13,6 +13,10 @@
       <servlet-name>storePage</servlet-name>
       <servlet-class>storePage</servlet-class>
   </servlet>
+  <servlet>
+      <servlet-name>shoppingCart</servlet-name>
+      <servlet-class>shoppingCart</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>productDetails</servlet-name>
     <url-pattern>/helloWorld.do</url-pattern>
@@ -20,5 +24,9 @@
   <servlet-mapping>
       <servlet-name>storePage</servlet-name>
       <url-pattern>/storePage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>shoppingCart</servlet-name>
+      <url-pattern>/shoppingCart</url-pattern>
   </servlet-mapping>
 </web-app>

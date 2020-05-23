@@ -55,26 +55,26 @@ public class productDetails extends HttpServlet {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             selectProduct = connection.prepareStatement("SELECT * FROM items WHERE id='"+ idname + "'");
             
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<link href=\"css/desc.css\" rel=\"stylesheet\" type=\"text/css\">");
+            out.println("<link href=\"css/index.css\" rel=\"stylesheet\" type=\"text/css\">");
+            out.println("</head>");
+            out.println("<body>");
+
+            out.println("<ul>");
+            out.println("<li><a href=\"about.jsp\">About</a></li>");
+            out.println("<li><a class=\"active\" href=\"storePage\">Store</a></li>");
+            out.println("<li><a>Kati Tran 33574122</a></li>");
+            out.println("<li><a>Jae Yoon Oh 41812159</a></li>");
+            out.println("</ul>");
+
+            out.println("<div class=\"about-section\">");
+            out.println("<h1>Kais\"R\"Us</h1>");
+            out.println("</div>");
             ResultSet products= selectProduct.executeQuery();
             while ( products.next()) {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<link href=\"css/desc.css\" rel=\"stylesheet\" type=\"text/css\">");
-                out.println("<link href=\"css/index.css\" rel=\"stylesheet\" type=\"text/css\">");
-                out.println("</head>");
-                out.println("<body>");
-
-                out.println("<ul>");
-                out.println("<li><a href=\"about.jsp\">About</a></li>");
-                out.println("<li><a class=\"active\" href=\"storePage\">Store</a></li>");
-                out.println("<li><a>Kati Tran 33574122</a></li>");
-                out.println("<li><a>Jae Yoon Oh 41812159</a></li>");
-                out.println("</ul>");
-
-                out.println("<div class=\"about-section\">");
-                out.println("<h1>Kais\"R\"Us</h1>");
-                out.println("</div>");
 
                 out.println("<h1 id=\"title\" style=\"max-width: 1000px; margin: 10px 20px;\">"+ products.getString("name")+ "</h1>");
                 out.println("<div class=\"side-bar\">");
@@ -98,7 +98,7 @@ public class productDetails extends HttpServlet {
                 out.println("<p><u>Price:</u> $" + products.getInt("price") + "</p>");
                 out.println("<h4><u>Size</u></h4>");
                 out.println("<p id=\"size\">" + products.getString("size") +"</p>");
-                out.println("<form action=\"storePage\" method=\"post\"> ");
+                out.println("<form action=\"shoppingCart\" method=\"post\"> ");
                 out.println("<button class=\"button\" style=\"padding: 20px; font-size:20px; margin: auto; width: 50%;\" >Add to Cart</button>");
                 out.println("</form>");
                 out.println("</div>");
@@ -111,14 +111,13 @@ public class productDetails extends HttpServlet {
                 out.println("}");
                 out.println("</script>");
                 
-                out.println("</body>");
-                out.println("</html>");
-                
                 HttpSession s = request.getSession(true);
                 s.setAttribute("myId",products.getString("name"));
  
             }
-           
+
+            out.println("</body>");
+            out.println("</html>");
             response.setContentType("text/html");
             //response.getWriter().write(idname);
 
