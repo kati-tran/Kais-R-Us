@@ -67,7 +67,7 @@ public class productDetails extends HttpServlet {
 
                 out.println("<ul>");
                 out.println("<li><a href=\"about.jsp\">About</a></li>");
-                out.println("<li><a class=\"active\" href=\"index.jsp\">Store</a></li>");
+                out.println("<li><a class=\"active\" href=\"storePage\">Store</a></li>");
                 out.println("<li><a>Kati Tran 33574122</a></li>");
                 out.println("<li><a>Jae Yoon Oh 41812159</a></li>");
                 out.println("</ul>");
@@ -98,7 +98,9 @@ public class productDetails extends HttpServlet {
                 out.println("<p><u>Price:</u> $" + products.getInt("price") + "</p>");
                 out.println("<h4><u>Size</u></h4>");
                 out.println("<p id=\"size\">" + products.getString("size") +"</p>");
+                out.println("<form action=\"storePage\" method=\"post\"> ");
                 out.println("<button class=\"button\" style=\"padding: 20px; font-size:20px; margin: auto; width: 50%;\" >Add to Cart</button>");
+                out.println("</form>");
                 out.println("</div>");
                 
                 out.println("</div>");

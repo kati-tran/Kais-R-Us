@@ -1,5 +1,6 @@
+storePage.class
 com\javapapers\sample\ajax\productDetails.class
 com\thejavageek\servlets\store.class
-com\s2020iae\firstiae\resources\JavaEE8Resource.class
 com\javapapers\sample\ajax\HelloServlet.class
+com\s2020iae\firstiae\resources\JavaEE8Resource.class
 com\s2020iae\firstiae\JAXRSConfiguration.class

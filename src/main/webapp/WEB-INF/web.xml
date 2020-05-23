@@ -9,8 +9,16 @@
     <servlet-class>com.javapapers.sample.ajax.productDetails</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  <servlet>
+      <servlet-name>storePage</servlet-name>
+      <servlet-class>storePage</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>productDetails</servlet-name>
     <url-pattern>/helloWorld.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>storePage</servlet-name>
+      <url-pattern>/storePage</url-pattern>
   </servlet-mapping>
 </web-app>
