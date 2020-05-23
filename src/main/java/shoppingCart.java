@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,20 +39,21 @@ public class shoppingCart extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
             String var = (String) session.getAttribute("myId");  
+            String idname = (String) session.getAttribute("testing");  
             
             List<String> list= (List<String>) session.getAttribute("list");
             if(list==null){
               list =new ArrayList<>();
             }
             // Add the name & cost to List
-            list.add(var);
+            list.add(idname);
 
             session.setAttribute("list",list);
             
-            for(String outs : list){
-              out.println(outs);
-              out.println("\n");
-            }
+            RequestDispatcher rd = request.getRequestDispatcher("productDetails?zip=" + idname);
+            rd.forward(request, response); 
+            
+
 
         }
     }

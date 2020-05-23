@@ -17,6 +17,19 @@
       <servlet-name>shoppingCart</servlet-name>
       <servlet-class>shoppingCart</servlet-class>
   </servlet>
+ <servlet>
+      <servlet-name>checkout</servlet-name>
+      <servlet-class>checkout</servlet-class>
+  </servlet>  
+ <servlet>
+      <servlet-name>orderConfirm</servlet-name>
+      <servlet-class>orderConfirm</servlet-class>
+  </servlet>  
+ <servlet>
+      <servlet-name>forwardOrder</servlet-name>
+      <servlet-class>forwardOrder</servlet-class>
+  </servlet> 
+  
   <servlet-mapping>
     <servlet-name>productDetails</servlet-name>
     <url-pattern>/helloWorld.do</url-pattern>
@@ -28,5 +41,17 @@
   <servlet-mapping>
       <servlet-name>shoppingCart</servlet-name>
       <url-pattern>/shoppingCart</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>checkout</servlet-name>
+      <url-pattern>/checkout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>orderConfirm</servlet-name>
+      <url-pattern>/orderConfirm</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>forwardOrder</servlet-name>
+      <url-pattern>/forwardOrder</url-pattern>
   </servlet-mapping>
 </web-app>

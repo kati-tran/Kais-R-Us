@@ -15,6 +15,7 @@
 
 	<ul>
 	  <li><a class="active" href="about.jsp">About</a></li>
+          <li><a href="checkout">Check Out</a></li>
 	  <li><a href="storePage">Store</a></li>
 	  <li><a>Kati Tran 33574122</a></li>
           <li><a>Jae Yoon Oh 41812159</a></li>

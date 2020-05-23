@@ -20,19 +20,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import java.util.LinkedList;
+import java.util.ListIterator; 
 /**
  *
  * @author Kati
  */
+
 @WebServlet(urlPatterns = {"/storePage"})
 public class storePage extends HttpServlet {
     String URL = "jdbc:mysql://localhost:3306/proj2database";
     String USERNAME = "root";
     String PASSWORD = "";
+    LinkedList<String> history = new LinkedList<String>();
 
     Connection connection = null;
     PreparedStatement selectProduct = null;
+    PreparedStatement selectHistory = null;
     ResultSet resultSet = null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,13 +58,17 @@ public class storePage extends HttpServlet {
             selectProduct = connection.prepareStatement("SELECT * FROM items");
             
             HttpSession session = request.getSession();
-            String var = (String) session.getAttribute("myId");     
-            
+            String var = (String) session.getAttribute("myId");
+            if (!(var == null) && !history.contains(var)){
+                if(history.size() == 5){
+                    history.poll();
+                }
+                history.addFirst(var);
+            }
             
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.include(request, response); 
             
-            out.println(var);
             ResultSet products= selectProduct.executeQuery();
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -83,11 +91,18 @@ public class storePage extends HttpServlet {
                 "</div>" +
                 "</div>");
             }
-            
             out.println("</div>" + 
-                    "</div>" + 
-                    "</body>" + 
-                    "</html>");
+                    "</div>");
+            out.println("Viewing History: ");
+            out.println("<br></br>");
+            ListIterator list_Iter = history.listIterator(0);
+            while(list_Iter.hasNext()){
+                String name = (String) list_Iter.next();
+                out.println(name);
+                out.println("<br></br>");
+
+            }
+            out.println("</body>" + "</html>");
         }
     }
 
