@@ -98,7 +98,7 @@ public class orderConfirm extends HttpServlet {
                     "<h2>Order Confirmation</h2>"+
                     "<h3>Shipping Details</h3>"+
                     "<h4>Shipping to:</h4>");
-            out.println("<p>" + fn + ln + "</p>");
+            out.println("<p>" + fn + " " +  ln + "</p>");
             out.println("<p>" + ad + "</p>");
             out.println("<p>" + ci + st + zi + "</p>");
             out.println("<p>" + pn + "</p>");

@@ -47,7 +47,7 @@ KEY FILES:
 PROJECT 3 REQUIREMENTS:
 
 1. index.jsp shows the html of the homepage without the items. storePage.java grabs from the database and dynamically
-	renders them with index.jsp. storePage.java shows the last 5 items viewed by taking from a session that was 
+	renders them with index.jsp. storePage.java shows the last 5 items viewed at the bottom of the page by taking from a session that was 
 	created in productDetails.java. storePage.java uses _include_ for the the index.jsp file.
 
 2. productDetails.java gets the item id from storePage.java and grabs the appropriate data from the database. It then

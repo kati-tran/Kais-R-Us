@@ -61,7 +61,7 @@ public class storePage extends HttpServlet {
             String var = (String) session.getAttribute("myId");
             if (!(var == null) && !history.contains(var)){
                 if(history.size() == 5){
-                    history.poll();
+                    history.pollLast();
                 }
                 history.addFirst(var);
             }
@@ -72,8 +72,8 @@ public class storePage extends HttpServlet {
             ResultSet products= selectProduct.executeQuery();
             out.println("<!DOCTYPE html>");
             out.println("<html>");
-            out.println("</head>" +
-                "<link href=\"css/store.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
+            out.println("</head>");
+            out.println(    "<link href=\"css/store.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
                 "<link href=\"css/index.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
                 "</head>"+
                 "<body>" +
@@ -91,16 +91,18 @@ public class storePage extends HttpServlet {
                 "</div>" +
                 "</div>");
             }
+
             out.println("</div>" + 
                     "</div>");
-            out.println("Viewing History: ");
-            out.println("<br></br>");
+                        if (history.size() > 0){
+                out.println("<b><font size = '6.25'>&nbsp Recently Viewed: </font></b>");
+                out.println("<br></br>");
+            }
             ListIterator list_Iter = history.listIterator(0);
             while(list_Iter.hasNext()){
                 String name = (String) list_Iter.next();
-                out.println(name);
+                out.println("&nbsp&nbsp&nbsp&nbsp&nbsp" + name);
                 out.println("<br></br>");
-
             }
             out.println("</body>" + "</html>");
         }
