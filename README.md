@@ -27,6 +27,9 @@ KEY FILES:
 	Stores item name in a session so that storePage.java can grab it and show it. When Add to Cart
 	is clicked it triggers the servlet shoppingCart.java
 
+	NOTE: This file is nested more into some folders than the other servlets are. This is because of the
+	connection with ajax.
+
 - shoppingCart.java: stores all the items into a shopping cart session.
 
 - checkout.java: When the Check Out tab is clicked, this servlet will show all the items in the shopping cart
