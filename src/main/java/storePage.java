@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import com.project4.utils.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -29,9 +30,9 @@ import java.util.ListIterator;
 
 @WebServlet(urlPatterns = {"/storePage"})
 public class storePage extends HttpServlet {
-    String URL = "jdbc:mysql://localhost:3306/proj2database";
-    String USERNAME = "root";
-    String PASSWORD = "";
+    String URL = Database.URL;
+    String USERNAME = Database.USERNAME;
+    String PASSWORD = Database.PASSWORD;
     LinkedList<String> history = new LinkedList<String>();
 
     Connection connection = null;
