@@ -5,13 +5,14 @@
 --%>
 
 <%@page import="java.sql.*"%>
+<%@page import="com.project4.utils.*"%>
 <%Class.forName("com.mysql.cj.jdbc.Driver");%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
     public class Product {
-        String URL = "jdbc:mysql://localhost:3306/proj2database";
-        String USERNAME = "root";
-        String PASSWORD = "";
+        String URL = Database.URL;
+        String USERNAME = Database.USERNAME;
+        String PASSWORD = Database.PASSWORD;
 
         Connection connection = null;
         PreparedStatement selectProduct = null;
