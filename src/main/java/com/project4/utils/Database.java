@@ -37,4 +37,9 @@ public class Database {
         return statement.executeQuery();
     }
 
+    public void executeUpdate(String sql) throws SQLException {
+        Statement statement = conn.createStatement();
+        statement.executeUpdate(sql);
+    }
+
 }
