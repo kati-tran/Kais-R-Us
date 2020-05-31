@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 
+import com.entities.Item;
 import com.project4.utils.Database;
+import com.queries.ItemQueries;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -12,6 +15,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -30,15 +34,8 @@ import java.util.ListIterator;
 
 @WebServlet(urlPatterns = {"/storePage"})
 public class storePage extends HttpServlet {
-    String URL = Database.URL;
-    String USERNAME = Database.USERNAME;
-    String PASSWORD = Database.PASSWORD;
     LinkedList<String> history = new LinkedList<String>();
 
-    Connection connection = null;
-    PreparedStatement selectProduct = null;
-    PreparedStatement selectHistory = null;
-    ResultSet resultSet = null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -53,11 +50,7 @@ public class storePage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            selectProduct = connection.prepareStatement("SELECT * FROM items");
-            
+
             HttpSession session = request.getSession();
             String var = (String) session.getAttribute("myId");
             if (!(var == null) && !history.contains(var)){
@@ -68,9 +61,9 @@ public class storePage extends HttpServlet {
             }
             
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.include(request, response); 
-            
-            ResultSet products= selectProduct.executeQuery();
+            rd.include(request, response);
+
+            ArrayList<Item> products = ItemQueries.getAllItems();
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("</head>");
@@ -80,14 +73,14 @@ public class storePage extends HttpServlet {
                 "<body>" +
                 "<div class=\"main\">" +
                 "<div class=\"row\">");
-            while ( products.next()) {
+            for (Item product : products) {
                 out.println("<div class=\"column\">" +
-                "<div class=\"content\" id=\"" + products.getString("id") + "\" onclick=\"sendData('"+ products.getString("id") + "')\">" +
-                "<img src=\""+products.getString("picture")+"\" style=\"width:100%\">" +
-                " <h4>"+products.getString("name")+"</h4>" +
-                "<p><b>$"+products.getInt("price")+"</b></p>" +
+                "<div class=\"content\" id=\"" + product.getId() + "\" onclick=\"sendData('"+ product.getId() + "')\">" +
+                "<img src=\""+product.getFirstPictureUrl()+"\" style=\"width:100%\">" +
+                " <h4>"+product.getName()+"</h4>" +
+                "<p><b>$"+product.getPrice()+"</b></p>" +
                 "<div class=\"texts\">" +
-                "<p><b>Type: </b>" + products.getString("type") + "&nbsp&nbsp&nbsp<b>Color: </b>" + products.getString("color") + "</p>" +
+                "<p><b>Type: </b>" + product.getType() + "&nbsp&nbsp&nbsp<b>Color: </b>" + product.getColor() + "</p>" +
                 "</div>" +
                 "</div>" +
                 "</div>");
