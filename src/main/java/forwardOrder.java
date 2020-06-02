@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import com.project4.utils.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -27,9 +28,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(urlPatterns = {"/forwardOrder"})
 public class forwardOrder extends HttpServlet {
-    String URL = "jdbc:mysql://localhost:3306/proj2database";
-    String USERNAME = "root";
-    String PASSWORD = "";
+    String URL = Database.URL;
+    String USERNAME = Database.USERNAME;
+    String PASSWORD = Database.PASSWORD;
 
     Connection connection = null;
     PreparedStatement selectProduct = null;
