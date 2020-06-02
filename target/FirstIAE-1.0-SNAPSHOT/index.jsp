@@ -4,7 +4,17 @@
     Author     : Kati
 --%>
 
+<%@page import="com.entities.Item"%>
+<%@page import="com.queries.ItemQueries"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.project4.utils.*"%>
+<%Class.forName("com.entities.Item");%>
+<%Class.forName("com.queries.ItemQueries");%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
+
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -27,6 +37,26 @@
 	  <h1>Kais"R"Us</h1>
 	</div>
     
+	<div class="main">
+
+	<!-- Portfolio Gallery Grid -->
+		<div class="row">
+
+			<% 
+                        ArrayList<Item> products = ItemQueries.getAllItems();
+                            
+                        for (Item product : products) { %>
+				<div class="column">
+				<div class="content" id="<%= product.getId()%>" onclick="sendData('<%= product.getId()%>')">
+				<img src="<%= product.getFirstPictureUrl()%>" style="width:100%">
+                                <h4><%= product.getName()%></h4>
+				<p><b>$<%= product.getPrice()%></b></p>
+				<div class="texts">
+				<p><b>Type: </b><%= product.getType()%>&nbsp&nbsp&nbsp<b>Color: </b><%= product.getColor()%></p>
+				</div>
+				</div>
+				</div>
+                        <% } %>
 		<script type="text/javascript">
 			function sendData(id_name) {
 				var xhr= new XMLHttpRequest(); 
@@ -62,6 +92,8 @@
 		}
 
 		</script>
+                </div>
+        </div>
 
 </body>
 </html>

@@ -63,29 +63,6 @@ public class storePage extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.include(request, response);
 
-            ArrayList<Item> products = ItemQueries.getAllItems();
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("</head>");
-            out.println(    "<link href=\"css/store.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
-                "<link href=\"css/index.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
-                "</head>"+
-                "<body>" +
-                "<div class=\"main\">" +
-                "<div class=\"row\">");
-            for (Item product : products) {
-                out.println("<div class=\"column\">" +
-                "<div class=\"content\" id=\"" + product.getId() + "\" onclick=\"sendData('"+ product.getId() + "')\">" +
-                "<img src=\""+product.getFirstPictureUrl()+"\" style=\"width:100%\">" +
-                " <h4>"+product.getName()+"</h4>" +
-                "<p><b>$"+product.getPrice()+"</b></p>" +
-                "<div class=\"texts\">" +
-                "<p><b>Type: </b>" + product.getType() + "&nbsp&nbsp&nbsp<b>Color: </b>" + product.getColor() + "</p>" +
-                "</div>" +
-                "</div>" +
-                "</div>");
-            }
-
             out.println("</div>" + 
                     "</div>");
                         if (history.size() > 0){
