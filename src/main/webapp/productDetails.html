@@ -40,8 +40,10 @@
             <p id="price"><u>Price:</u></p>
             <h4><u>Size</u></h4>
             <p id="size"></p>
-            <form action="shoppingCart" method="post"> 
-                <button class="button" style="padding: 20px; font-size:20px; margin: auto; width: 50%;" >Add to Cart</button>
+            <form action="rest/cart/" method="post"> 
+                <input type="hidden" id="summary" name="summary" value="value" />
+                <input type="hidden" id="description" name="description" value="placeholderd" />
+                <button class="button" onclick="itemadded()" style="padding: 20px; font-size:20px; margin: auto; width: 50%;" >Add to Cart</button>
             </form>
         </div>
     </div>
@@ -50,6 +52,11 @@
         function replaceIMG(event){
             document.getElementById("image").src = event.src;
         }
+        
+        function itemadded(){
+            alert("Added to shopping cart!");
+        }
+        
     </script>
     <script>
         var params = window.location.href.split("?")[1].split("=")
@@ -61,6 +68,9 @@
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var response = JSON.parse(this.responseText);
+                document.getElementById("summary").value = response.id;
+                document.getElementById("description").value = response.name;
+                
                 document.getElementById('title').innerHTML = response.name;
                 document.getElementById('sideImage1').src = response.picture;
                 document.getElementById('sideImage2').src = response.picture2;

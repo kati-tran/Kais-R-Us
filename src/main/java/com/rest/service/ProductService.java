@@ -5,12 +5,15 @@
  */
 package com.rest.service;
 
+import com.entities.Cart;
+import com.entities.Item;
 import com.rest.model.Product;
 import com.project4.utils.Database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 /**
  *
@@ -53,6 +56,18 @@ public class ProductService {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public static boolean AddCart(Cart cart) throws ClassNotFoundException, SQLException {
+
+        String sql = "INSERT INTO shoppingcart (sid, itemname)" +
+                "VALUES (?, ?)";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Database database = new Database();
+        database.openConnection();
+        Connection connection = database.conn;
+        return Database.performDBUpdate(connection, sql, cart.getSid(), cart.getItemName());
+
     }
     
 }
