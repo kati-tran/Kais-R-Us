@@ -26,7 +26,7 @@ public class ProductResource {
     @Path("{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getProductById(@PathParam("id") int id) {
+    public Response getProductById(@PathParam("id") String id) {
         Product product = ProductService.getProductById(id);
         
         if(product == null) {

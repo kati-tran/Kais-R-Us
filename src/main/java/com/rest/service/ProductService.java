@@ -17,7 +17,7 @@ import java.sql.Statement;
  * @author viviannguyen
  */
 public class ProductService {
-    public static Product getProductById(int id) {
+    public static Product getProductById(String id) {
         try{
             //Establish connection to database.
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -26,7 +26,7 @@ public class ProductService {
             Connection connection = database.conn;
             
             //Retrieve result from database.
-            ResultSet results = database.executeQuery("SELECT * FROM items WHERE id = id"); 
+            ResultSet results = database.executeQuery("SELECT * FROM items WHERE id = '" + id + "'");
             if (results != null){
                 while(results.next()){
                     
