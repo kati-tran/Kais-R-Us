@@ -63,7 +63,7 @@
 				xhr.onreadystatechange= function () {
 					if (xhr.readyState== 4 && xhr.status== 200){
 						//document.getElementById("poll").innerHTML=this.responseText;
-						location.href = "rest/product/" + id_name;
+						location.href = "productDetails.html?id=" + id_name;
 					}
 				} 
 				  xhr.open("POST","helloWorld.do?",true);
