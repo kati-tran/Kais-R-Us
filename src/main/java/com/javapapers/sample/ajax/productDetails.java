@@ -71,7 +71,7 @@ public class productDetails extends HttpServlet {
             out.println("<div class=\"about-section\">");
             out.println("<h1>Kais\"R\"Us</h1>");
             out.println("</div>");
-            ResultSet products = db.executQuery("SELECT * FROM items WHERE id='" + idname + "'");
+            ResultSet products = db.executeQuery("SELECT * FROM items WHERE id='" + idname + "'");
             while (products.next()) {
 
                 out.println("<h1 id=\"title\" style=\"max-width: 1000px; margin: 10px 20px;\">"

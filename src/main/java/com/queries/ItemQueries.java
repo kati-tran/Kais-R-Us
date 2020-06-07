@@ -12,7 +12,7 @@ public class ItemQueries {
     public static Item getItemById(String id) throws SQLException, ClassNotFoundException {
         Database db = new Database();
         db.openConnection();
-        ResultSet resultSet = db.executQuery("SELECT * FROM items WHERE id=" + id);
+        ResultSet resultSet = db.executeQuery("SELECT * FROM items WHERE id=" + id);
         resultSet.next();
         Item item = new Item(
                 resultSet.getString("id"),
@@ -33,7 +33,7 @@ public class ItemQueries {
     public static ArrayList<Item> getAllItems() throws SQLException, ClassNotFoundException {
         Database db = new Database();
         db.openConnection();
-        ResultSet resultSet = db.executQuery("SELECT * FROM items");
+        ResultSet resultSet = db.executeQuery("SELECT * FROM items");
         ArrayList<Item> items = new ArrayList<Item>();
         while(resultSet.next()){
             items.add(

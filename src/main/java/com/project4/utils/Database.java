@@ -8,7 +8,7 @@ import java.sql.*;
  */
 public class Database {
 
-    public static final String URL = "jdbc:mysql://localhost:3306/proj2database";
+    public static final String URL = "jdbc:mysql://127.0.0.1:3306/proj2database?serverTimezone=US/Pacific";
 //     public static final String URL = "jdbc:mysql://localhost:3306/proj2database?useSSL=false&serverTimezone=UTC";
     public static final String USERNAME = "root";
     public static final String PASSWORD = "";
@@ -32,7 +32,7 @@ public class Database {
         }
     }
 
-    public ResultSet executQuery(String query) throws SQLException {
+    public ResultSet executeQuery(String query) throws SQLException {
         PreparedStatement statement = conn.prepareStatement(query);
         return statement.executeQuery();
     }
