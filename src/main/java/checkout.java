@@ -105,36 +105,48 @@ public class checkout extends HttpServlet {
             
             
             out.println("<div class=\"checkout\">");
-                out.println("<form method=\"post\" action=\"forwardOrder\">");
+                out.println("<form method=\"post\" action=\"rest/confirm/\">");
                 out.println("<h2>Purchase</h2>");
                 out.println("<label for=\"first_name\">First Name</label>");
                 out.println("<input type=\"text\" name=\"first_name\" required placeholder=\"Bob\">");
+                
                 out.println("<label for=\"last_name\">Last Name</label>");
                 out.println("<input type=\"text\" name=\"last_name\" required placeholder=\"Ross\">");
+                
                 out.println("<label for=\"name\">Phone Number</label>");
                 out.println("<input type=\"text\" name=\"phone\" required pattern=\"[0-9]{3}-[0-9]{3}-[0-9]{4}\" placeholder=\"123-456-7890\">");
+       
                 out.println("<label for=\"name\">Street</label>");
                 out.println("<input type=\"text\" name=\"address\" required placeholder=\"123 Sesame Street\">");
+                
                 out.println("<label for=\"city\">City </label>");
                 out.println("<input id=\"cityname\" type=\"text\" name=\"city\" required placeholder=\"Irvine\">");
+                
                 out.println("<label for=\"state\">State</label>");
                 out.println("<input id=\"statename\" type=\"text\" name=\"state\" pattern=\"[A-Z]{2}\" required maxlength=\"2\" placeholder=\"CA\">");
+                
                 out.println("<label for=\"zip\">Zip</label>");
                 out.println("<input type=\"text\" name=\"zip\" pattern=\"[0-9]{5}\" maxlength=\"5\" required placeholder=\"12345\">");
+                
                 out.println("<label for=\"ship\">Shipping Speed</label>");
                 out.println("<select type=\"text\" name=\"shipping\" id=\"shipping\">");
                 out.println("<option value=\"Overnight Shipping\">Overnight Shipping</option>");
                 out.println("<option value=\"2day Expedited\">2-Days Expedited</option>");
                 out.println("<option value=\"6-Day Ground\">6-Days Ground</option>");
                 out.println("</select>");
+                
                 out.println("<h2>Credit Card</h2>");
                 out.println("<label for=\"card-num\">Credit Card Number</label>");
                 out.println("<input type=\"text\" name=\"cardnum\" required pattern=\"[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}\" placeholder=\"1234-5678-9123-4567\">");
+                
                 out.println("<label for=\"card-num\">Expire</label>");
                 out.println("<input type=\"text\" name=\"expire\" required placeholder=\"4/21\">");
+                
                 out.println("<label for=\"card-num\">CVV</label>");
                 out.println("<input type=\"text\" name=\"security\" required maxlength=\"3\" placeholder=\"123\">");
+                
                 out.println("<input type=\"submit\" value=\"Send\" style=\"padding: 20px; font-size:20px; color:white; background-color: #aaa;\">");
+                
                 out.println("</form>");
                 out.println("</div>");
             
