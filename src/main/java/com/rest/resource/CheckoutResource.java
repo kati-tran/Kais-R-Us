@@ -5,7 +5,8 @@
  */
 package com.rest.resource;
 
-import com.entities.Cart;
+import com.rest.model.Order;
+import com.rest.service.OrderService;
 import com.rest.service.ProductService;
 import java.sql.SQLException;
 import javax.ws.rs.Consumes;
