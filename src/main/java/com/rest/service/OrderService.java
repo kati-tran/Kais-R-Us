@@ -18,33 +18,19 @@ import java.util.logging.Logger;
  */
 public class OrderService {
 
-    public static boolean AddOrder(Order order) throws SQLException {
-        try {
-            String sql = "INSERT INTO confirm" +
-                    "VALUES('" + order.getFirstName() + "','" +
-                    order.getLastName() + "','" +
-                    order.getPhoneNum() + "','" + 
-                    order.getStreet() + "','" +
-                    order.getStreet() + "','" +
-                    order.getCity() + "','" +
-                    order.getState() + "','" +
-                    order.getZip() + "','" +
-                    order.getShippingMethod() + "','" +
-                    order.getCcn() +  "','" +
-                    order.getExp() +  "','" +
-                    order.getCvv() + "');"; //TODO add shopping cart
+    public static boolean AddOrder(Order order) throws SQLException, ClassNotFoundException {
+            String sql = "INSERT INTO confirm_order (FIRST_NAME, LAST_NAME, PHONE_NUMBER, STREET, CITY, STATE, ZIP, SHIPPING_SPEED, CCN, EXP, CVV)" +
+                    "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                     
             Class.forName("com.mysql.cj.jdbc.Driver");
             Database database = new Database();
             database.openConnection();
             
             Connection connection = database.conn;
-            return Database.performDBUpdate(connection, sql);
+            return Database.performDBUpdate(connection, sql, order.getFirstName(), order.getLastName(), order.getPhoneNum(), order.getStreet(), order.getCity(), order.getState(), order.getZip(), order.getShippingMethod(), order.getCcn(), order.getExp(), order.getCvv());
             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(OrderService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
+
     }
+
     
 }

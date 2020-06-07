@@ -24,6 +24,14 @@ import javax.ws.rs.core.Response;
  */
 @Path("/confirm")
 public class OrderResource {
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addConfirm(Order order) throws ClassNotFoundException, SQLException {
+        if(OrderService.AddOrder(order)) {
+            return Response.ok().entity("Order Added Successfully").build();
+        }
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+    }
     
     @POST
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
@@ -39,16 +47,12 @@ public class OrderResource {
             @FormParam("expire") String expire,
             @FormParam("security") String security) throws ClassNotFoundException, SQLException {
         
-        Order order = new Order(first_name, last_name, address, city, state, zip, shipping, cardnum, expire, security);
+        Order order = new Order(first_name, last_name, phone, address, city, state, zip, shipping, cardnum, expire, security);
         if(OrderService.AddOrder(order)) {
             return Response.ok().entity("Order Added Successfully").build();
         }
         
         System.out.println(order);
-
-        if(OrderService.AddOrder(order)) {
-            return null;
-        }
 
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 

@@ -9,6 +9,7 @@ import com.entities.Cart;
 import com.entities.Item;
 import com.rest.model.Product;
 import com.project4.utils.Database;
+import com.rest.model.Order;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -69,5 +70,7 @@ public class ProductService {
         return Database.performDBUpdate(connection, sql, cart.getSid(), cart.getItemName());
 
     }
+
+    
     
 }
