@@ -25,7 +25,6 @@ import javax.ws.rs.core.Response;
 @Path("/confirm")
 public class OrderResource {
     
-    
     @POST
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
     public Response addConfirm(@FormParam("first_name") String first_name,
