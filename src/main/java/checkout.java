@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 
+import com.entities.Cart;
+import com.entities.Item;
 import com.project4.utils.Database;
+import com.queries.CartQueries;
+import com.queries.ItemQueries;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -87,14 +91,15 @@ public class checkout extends HttpServlet {
             out.println("<div class=\"main\">"+
                     "<div class=\"confirm\">"+
                     "<h2>Shopping Cart</h2>");
-            for(String outs : list){
-              selectProduct = connection.prepareStatement("SELECT * FROM items WHERE id='"+ outs + "'");
-              ResultSet products= selectProduct.executeQuery();
-              while ( products.next()) {
-                out.println("<p>"+ products.getString("name") + " &nbsp&nbsp&nbsp<b>$"+products.getInt("price")+"</b></p>");
-                total += products.getInt("price");
-              }
+            
+            ArrayList<Cart> products = CartQueries.getAllCartItems();
+            for(Cart product : products){
+                Item grabDetails = ItemQueries.getItemById(product.getSid());
+                out.println("<p>"+ grabDetails.getName() + " &nbsp&nbsp&nbsp<b>$" + grabDetails.getPrice() + "</b></p>");
+                total += grabDetails.getPrice();
             }
+            
+            
             out.println("<h3>Total: $" + total + "</h3>");
             out.println("</div>");
             

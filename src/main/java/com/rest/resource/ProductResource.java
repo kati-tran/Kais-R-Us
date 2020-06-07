@@ -35,4 +35,6 @@ public class ProductResource {
         
         return Response.ok(product).build();
     }
+
+
 }

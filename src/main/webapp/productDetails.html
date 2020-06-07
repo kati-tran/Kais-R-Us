@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="css/desc.css" rel="stylesheet" type="text/css">
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+    </head>
+<body>
+
+    <ul>
+        <li><a href="about.jsp">About</a></li>
+        <li><a href="checkout">Check Out</a></li>
+        <li><a class="active" href="storePage">Store</a></li>
+        <li><a>Kati Tran 33574122</a></li>
+        <li><a>Jae Yoon Oh 41812159</a></li>
+    </ul>
+    
+    <div class="about-section">
+        <h1>Kais"R"Us</h1>
+    </div>
+
+    <h1 id="title" style="max-width: 1000px; margin: 10px 20px;">title</h1>
+    <div class="side-bar">
+        <img id="sideImage1" src="" style="width:100px; border:1px solid #ddd;" onmouseover="replaceIMG(this)"/>
+        <img id="sideImage2" src="" style="width:100px; border:1px solid #ddd;" onmouseover="replaceIMG(this)"/>
+    </div>
+    <div class="main">
+        <div class ="row">
+            <div class="column">
+                <div class="dcontent">
+                    <img id="image" src="" style="width:100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="checkout">
+        <div class="writeup">
+            <h4><u>Description</u></h4>
+            <p id="writing"></p>
+            <p id="price"><u>Price:</u></p>
+            <h4><u>Size</u></h4>
+            <p id="size"></p>
+            <form action="rest/cart/" method="post"> 
+                <input type="hidden" id="summary" name="summary" value="value" />
+                <input type="hidden" id="description" name="description" value="placeholderd" />
+                <button class="button" onclick="itemadded()" style="padding: 20px; font-size:20px; margin: auto; width: 50%;" >Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function replaceIMG(event){
+            document.getElementById("image").src = event.src;
+        }
+        
+        function itemadded(){
+            alert("Added to shopping cart!");
+        }
+        
+    </script>
+    <script>
+        var params = window.location.href.split("?")[1].split("=")
+        var url = "rest/product/";
+        if(params[0] === "id"){
+            url += params[1];
+        }
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var response = JSON.parse(this.responseText);
+                document.getElementById("summary").value = response.id;
+                document.getElementById("description").value = response.name;
+                
+                document.getElementById('title').innerHTML = response.name;
+                document.getElementById('sideImage1').src = response.picture;
+                document.getElementById('sideImage2').src = response.picture2;
+                document.getElementById('image').src = response.picture;
+                document.getElementById('writing').innerHTML = response.descrip;
+                document.getElementById('price').innerHTML = "$" + response.price;
+                document.getElementById('size').innerHTML = response.size;
+            }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    </script>
+</body>
+</html>
