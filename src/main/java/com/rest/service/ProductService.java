@@ -6,37 +6,34 @@
 package com.rest.service;
 
 import com.entities.Cart;
-import com.entities.Item;
 import com.rest.model.Product;
 import com.project4.utils.Database;
-import com.rest.model.Order;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
+
 /**
  *
  * @author viviannguyen
  */
 public class ProductService {
     public static Product getProductById(String id) {
-        try{
-            //Establish connection to database.
+        try {
+            // Establish connection to database.
             Class.forName("com.mysql.cj.jdbc.Driver");
             Database database = new Database();
             database.openConnection();
             Connection connection = database.conn;
-            
-            //Retrieve result from database.
+
+            // Retrieve result from database.
             ResultSet results = database.executeQuery("SELECT * FROM items WHERE id = '" + id + "'");
-            if (results != null){
-                while(results.next()){
-                    
-                    //Create and populate the Product Model (resource)
+            if (results != null) {
+                while (results.next()) {
+
+                    // Create and populate the Product Model (resource)
                     Product product = new Product();
-                    
+
                     product.setId(results.getString("id"));
                     product.setPicture(results.getString("picture"));
                     product.setPicture2(results.getString("picture2"));
@@ -48,21 +45,20 @@ public class ProductService {
                     product.setSize(results.getString("size"));
                     database.closeConnection();
 
-                    //Return Resource to the ProductResource handler.
+                    // Return Resource to the ProductResource handler.
                     return product;
                 }
             }
             database.closeConnection();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-    
+
     public static boolean AddCart(Cart cart) throws ClassNotFoundException, SQLException {
 
-        String sql = "INSERT INTO shoppingcart (sid, itemname)" +
-                "VALUES (?, ?)";
+        String sql = "INSERT INTO shoppingcart (sid, itemname)" + "VALUES (?, ?)";
         Class.forName("com.mysql.cj.jdbc.Driver");
         Database database = new Database();
         database.openConnection();
@@ -71,6 +67,22 @@ public class ProductService {
 
     }
 
-    
-    
+    public static ArrayList<Product> GetCartItems() throws ClassNotFoundException, SQLException {
+        Database db = new Database();
+        db.openConnection();
+        ResultSet resultSet = db.executeQuery("SELECT * FROM shoppingcart JOIN items ON items.id = shoppingcart.sid");
+        ArrayList<Product> cart = new ArrayList<>();
+        if (resultSet != null) {
+            while (resultSet.next()) {
+                cart.add(new Product(resultSet.getString("id"), resultSet.getString("picture"),
+                        resultSet.getString("picture2"), resultSet.getString("name"), resultSet.getInt("price"),
+                        resultSet.getString("type"), resultSet.getString("color"), resultSet.getString("descrip"),
+                        resultSet.getString("size")));
+            }
+        }
+
+        db.closeConnection();
+        return cart;
+    }
+
 }

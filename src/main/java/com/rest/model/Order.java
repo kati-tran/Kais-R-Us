@@ -24,6 +24,10 @@ public class Order {
     String cvv;
     //TODO ADD SHOPPING CART
 
+
+    public Order() {
+    }
+
     public Order(String first_name, String last_name, String phoneNum, String address, String city, String state, String zip, String shipping, String cardnum, String expire, String security) {
         this.firstName = first_name;
         this.lastName = last_name;

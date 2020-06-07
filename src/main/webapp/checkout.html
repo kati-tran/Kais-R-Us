@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/confirm.css" rel="stylesheet" type="text/css" />
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <ul>
+      <li><a href="about.jsp">About</a></li>
+      <li><a class="active" href="checkout">Check Out</a></li>
+      <li><a href="storePage">Store</a></li>
+      <li><a>Kati Tran 33574122</a></li>
+      <li><a>Jae Yoon Oh 41812159</a></li>
+    </ul>
+
+    <div class="about-section">
+      <h1>Kais"R"Us</h1>
+    </div>
+
+    <div class="main">
+      <div class="confirm" id="cartHolder">
+        <h2>Shopping Cart</h2>
+        <div id="cartItems"></div>
+        <h3>Total: $ <span id="amount"></span></h3>
+      </div>
+
+      <div class="checkout">
+        <form method="post" action="rest/confirm/" id="theForm">
+          <h2>Purchase</h2>
+          <label for="first_name">First Name</label>
+          <input
+            type="text"
+            name="first_name"
+            required
+            placeholder="Bob"
+            id="first_name_value"
+          />
+
+          <label for="last_name">Last Name</label>
+          <input
+            type="text"
+            name="last_name"
+            required
+            placeholder="Ross"
+            id="last_name_value"
+          />
+
+          <label for="name">Phone Number</label>
+          <input
+            type="text"
+            name="phone"
+            required
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            placeholder="123-456-7890"
+            id="phone_value"
+          />
+
+          <label for="name">Street</label>
+          <input
+            type="text"
+            name="address"
+            required
+            placeholder="123 Sesame Street"
+            id="address_value"
+          />
+
+          <label for="city">City </label>
+          <input
+            id="cityname"
+            type="text"
+            name="city"
+            required
+            placeholder="Irvine"
+          />
+
+          <label for="state">State</label>
+          <input
+            id="statename"
+            type="text"
+            name="state"
+            pattern="[A-Z]{2}"
+            required
+            maxlength="2"
+            placeholder="CA"
+          />
+
+          <label for="zip">Zip</label>
+          <input
+            type="text"
+            name="zip"
+            pattern="[0-9]{5}"
+            maxlength="5"
+            required
+            placeholder="12345"
+            id="zip_value"
+          />
+
+          <label for="ship">Shipping Speed</label>
+          <select type="text" name="shipping" id="shipping">
+            <option value="Overnight Shipping">Overnight Shipping</option>
+            <option value="2day Expedited">2-Days Expedited</option>
+            <option value="6-Day Ground">6-Days Ground</option>
+          </select>
+
+          <h2>Credit Card</h2>
+          <label for="card-num">Credit Card Number</label>
+          <input
+            type="text"
+            name="cardnum"
+            required
+            pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
+            placeholder="1234-5678-9123-4567"
+            id="credit_value"
+          />
+
+          <label for="card-num">Expire</label>
+          <input
+            type="text"
+            name="expire"
+            required
+            placeholder="4/21"
+            id="expire_value"
+          />
+
+          <label for="card-num">CVV</label>
+          <input
+            type="text"
+            name="security"
+            required
+            maxlength="3"
+            placeholder="123"
+            id="security_value"
+          />
+
+          <input
+            type="button"
+            value="Send"
+            style="
+              padding: 20px;
+              font-size: 20px;
+              color: white;
+              background-color: #aaa;
+            "
+            onclick="onSubmit(this)"
+          />
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function getCartItems() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            if (data != null) {
+              var total = 0;
+              var container = document.getElementById("cartItems");
+              for (var i = 0; i < data.length; ++i) {
+                total += data[i].price;
+                var item = document.createElement("p");
+                item.innerHTML =
+                  data[i].name + ":&nbsp;<b>$" + data[i].price + "</b>";
+                container.appendChild(item);
+              }
+              document.getElementById("amount").innerHTML = total;
+            }
+          }
+        };
+        xhttp.open("GET", "rest/cart", true);
+        xhttp.send();
+      }
+
+      function onSubmit() {
+        var data = {
+          firstName: document.getElementById("first_name_value").value,
+          lastName: document.getElementById("last_name_value").value,
+          phoneNum: document.getElementById("phone_value").value,
+          street: document.getElementById("address_value").value,
+          city: document.getElementById("cityname").value,
+          state: document.getElementById("statename").value,
+          zip: document.getElementById("zip_value").value,
+          shippingMethod: document.getElementById("shipping").value,
+          ccn: document.getElementById("credit_value").value,
+          exp: document.getElementById("expire_value").value,
+          cvv: document.getElementById("security_value").value,
+        };
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            window.location.href = "index.jsp";
+          } else {
+            console.log("error");
+          }
+        };
+
+        xhttp.open("POST", "rest/confirm", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(JSON.stringify(data));
+      }
+
+      getCartItems();
+    </script>
+  </body>
+</html>

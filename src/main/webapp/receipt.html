@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href=css/confirm.css rel=stylesheet type=text/css>
+    <link href=css/index.css rel=stylesheet type=text/css>
+    </head>
+<body>
+
+<ul>
+    <li><a href=about.jsp>About</a></li>
+    <li><a class=active href=checkout>Check Out</a></li>
+    <li><a href=storePage>Store</a></li>
+    <li><a>Kati Tran 33574122</a></li>
+    <li><a>Jae Yoon Oh 41812159</a></li>
+    </ul>
+
+<div class=about-section>
+    <h1>KaisRUs</h1>
+    </div>
+
+<div class=main>
+    <div class=confirm>
+        <h2>Order Confirmation</h2>
+        <h3>Shipping Details</h3>
+        <h4>Shipping to:</h4>
+        <p><span id="first_name">first</span> <span id="last_name">last</span></p>
+        <p id="address"></p>
+        <p>  <span id="city">city</span>  <span id="state">state</span>  <span id="zip">zip</span>  </p>
+        <p id="phone">phone</p>
+        <h4>Shipping Via:</h4>
+        <p id="shipping"></p>
+        <h3>Item Details</h3>
+        <h4>Items</h4>
+        <div id="itemContainer"></div>
+        <p><b>Total: $  <span id="total"></span>  </b></p>
+        <h3>Payment Information</h3>
+        <h4>Card Information</h4>
+        <p><b>Card No.: </b> <span id="creditCardNunber">1111-1111-1111-1111</span>  </p>
+        <p><b>Valid: </b>   ex   <b>CVV:</b> <span id="ccv">ccv</span>  </p>
+        </div>
+
+    </div>
+<script>
+    function getCartItems (){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                if(data != null){
+                    var total = 0;
+                    var container = document.getElementById("itemContainer");
+                    for(var i = 0; i < data.length; ++i){
+                        total += data[i].price;
+                        var item = document.createElement("p");
+                        item.innerHTML = data[i].name + ":&nbsp;<b>$" + data[i].price + "</b>";
+                        container.appendChild(item);
+                    }
+                    document.getElementById("total").innerHTML = total;
+                }
+            }
+        };
+        xhttp.open("GET", "rest/cart", true);
+        xhttp.send();
+    }
+
+    function getCustomerInfo(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                console.log(data);
+                if(data != null){
+                    document.getElementById("first_name").innerHTML = data.firstName;
+                    document.getElementById("last_name").innerHTML = data.lastName;
+                    document.getElementById("address").innerHTML = data.street;
+                    document.getElementById("city").innerHTML = data.city;
+                    document.getElementById("state").innerHTML = data.state;
+                    document.getElementById("zip").innerHTML = data.zip;
+                    document.getElementById("phone").innerHTML = data.phoneNum;
+                    document.getElementById("shipping").innerHTML = data.shippingMethod;
+                }
+            }
+        };
+        xhttp.open("GET", "rest/cart/receipt", true);
+        xhttp.send();
+    }
+
+    getCustomerInfo();
+    getCartItems();
+</script>
+</body>
+</html>

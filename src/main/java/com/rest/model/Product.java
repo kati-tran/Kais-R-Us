@@ -21,6 +21,21 @@ public class Product {
     String descrip;
     String size;
 
+    public Product() {
+    }
+
+    public Product(String id, String picture, String picture2, String name, Integer price, String type, String color, String descrip, String size) {
+        this.id = id;
+        this.picture = picture;
+        this.picture2 = picture2;
+        this.name = name;
+        this.price = price;
+        this.type = type;
+        this.color = color;
+        this.descrip = descrip;
+        this.size = size;
+    }
+
     public String getId() {
         return id;
     }

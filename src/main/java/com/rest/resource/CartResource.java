@@ -6,10 +6,14 @@
 package com.rest.resource;
 
 import com.entities.Cart;
+import com.entities.Confirm;
 import com.entities.Item;
+import com.rest.model.Order;
 import com.rest.model.Product;
+import com.rest.service.OrderService;
 import com.rest.service.ProductService;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -50,8 +54,24 @@ public class CartResource {
         }
 
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+    }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCartItems() throws SQLException, ClassNotFoundException {
+        ArrayList<Product> cart = ProductService.GetCartItems();
+        if(cart.size() > 0)
+            return Response.ok(cart).build();
+        else
+            return Response.status(Response.Status.NO_CONTENT).build();
+    }
 
+    @Path("/receipt")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCustomerInfo() throws SQLException, ClassNotFoundException {
+        Order o = OrderService.GetMostRecentOrder();
+        return Response.ok(o).build();
     }
 }
 
