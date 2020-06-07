@@ -23,11 +23,12 @@ import javax.ws.rs.core.Response;
  * @author viviannguyen
  */
 @Path("/confirm")
-public class CheckoutResource {
+public class OrderResource {
+    
     
     @POST
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
-    public Response getTodoById(@FormParam("first_name") String first_name,
+    public Response addConfirm(@FormParam("first_name") String first_name,
             @FormParam("last_name") String last_name,
             @FormParam("phone") String phone,
             @FormParam("address") String address,
@@ -40,7 +41,10 @@ public class CheckoutResource {
             @FormParam("security") String security) throws ClassNotFoundException, SQLException {
         
         Order order = new Order(first_name, last_name, address, city, state, zip, shipping, cardnum, expire, security);
-
+        if(OrderService.AddOrder(order)) {
+            return Response.ok().entity("Order Added Successfully").build();
+        }
+        
         System.out.println(order);
 
         if(OrderService.AddOrder(order)) {

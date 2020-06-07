@@ -42,7 +42,7 @@ public class CartResource {
     public Response addTodo(@FormParam("summary") String summary,
                             @FormParam("description") String description) throws ClassNotFoundException, SQLException {
         Cart cart = new Cart(summary, description);
-
+        
         System.out.println(cart);
 
         if(ProductService.AddCart(cart)) {
