@@ -35,7 +35,7 @@ public class OrderService {
     public static Order GetMostRecentOrder() throws SQLException, ClassNotFoundException {
         Database db = new Database();
         db.openConnection();
-        ResultSet results = db.executeQuery("SELECT * FROM CONFIRM_ORDER LIMIT 1");
+        ResultSet results = db.executeQuery("SELECT * FROM CONFIRM_ORDER Order By id DESC LIMIT 1");
         Order order = new Order();
         if (results.next()) {
             order.setFirstName(results.getString("FIRST_NAME"));
