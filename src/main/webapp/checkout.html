@@ -133,6 +133,19 @@
             placeholder="123"
             id="security_value"
           />
+          
+          <input
+            type="hidden"
+            name="cartitems"
+            id="cartitems"
+          />
+          
+          <input
+            type="hidden"
+            name="total"
+            id="total"
+            value="0"
+          />
 
           <input
             type="button"
@@ -150,22 +163,29 @@
     </div>
 
     <script>
+        
       function getCartItems() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText);
             if (data != null) {
-              var total = 0;
+              var cartContent = "";  
+              var totalPrice = 0;
               var container = document.getElementById("cartItems");
               for (var i = 0; i < data.length; ++i) {
-                total += data[i].price;
+                totalPrice += data[i].price;
                 var item = document.createElement("p");
                 item.innerHTML =
                   data[i].name + ":&nbsp;<b>$" + data[i].price + "</b>";
+                  cartContent += data[i].id;
                 container.appendChild(item);
               }
-              document.getElementById("amount").innerHTML = total;
+              document.getElementById("amount").innerHTML = totalPrice;
+              document.getElementById("cartitems").value = cartContent;
+              document.getElementById("total").value = totalPrice;
+              console.log(document.getElementById("total").value);
+              console.log(document.getElementById("cartitems").value);
             }
           }
         };
@@ -174,6 +194,8 @@
       }
 
       function onSubmit() {
+        console.log(document.getElementById("total").value);
+        console.log(document.getElementById("cartitems").value);
         var data = {
           firstName: document.getElementById("first_name_value").value,
           lastName: document.getElementById("last_name_value").value,
@@ -186,6 +208,8 @@
           ccn: document.getElementById("credit_value").value,
           exp: document.getElementById("expire_value").value,
           cvv: document.getElementById("security_value").value,
+          cartitems: document.getElementById("cartitems").value,
+          total: document.getElementById("total").value,
         };
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {

@@ -18,8 +18,8 @@ import java.sql.SQLException;
 public class OrderService {
 
     public static boolean AddOrder(Order order) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO confirm_order (FIRST_NAME, LAST_NAME, PHONE_NUMBER, STREET, CITY, STATE, ZIP, SHIPPING_SPEED, CCN, EXP, CVV)"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO confirm_order (FIRST_NAME, LAST_NAME, PHONE_NUMBER, STREET, CITY, STATE, ZIP, SHIPPING_SPEED, CCN, EXP, CVV, CONTENTS, TOTAL_PRICE)"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         Class.forName("com.mysql.cj.jdbc.Driver");
         Database database = new Database();
@@ -28,7 +28,7 @@ public class OrderService {
         Connection connection = database.conn;
         return Database.performDBUpdate(connection, sql, order.getFirstName(), order.getLastName(), order.getPhoneNum(),
                 order.getStreet(), order.getCity(), order.getState(), order.getZip(), order.getShippingMethod(),
-                order.getCcn(), order.getExp(), order.getCvv());
+                order.getCcn(), order.getExp(), order.getCvv(), order.getCartItems(), order.getTotal());
 
     }
 
@@ -49,6 +49,8 @@ public class OrderService {
             order.setCcn(results.getString("CCN"));
             order.setExp(results.getString("EXP"));
             order.setCvv(results.getString("CVV"));
+            order.setCartItems(results.getString("CONTENTS"));
+            order.setTotal(results.getString("TOTAL_PRICE"));
         }
         db.closeConnection();
         return order;

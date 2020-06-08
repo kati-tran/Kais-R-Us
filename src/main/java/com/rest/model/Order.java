@@ -22,13 +22,15 @@ public class Order {
     String ccn;
     String exp;
     String cvv;
+    String cartitems;
+    String total;
     //TODO ADD SHOPPING CART
 
 
     public Order() {
     }
 
-    public Order(String first_name, String last_name, String phoneNum, String address, String city, String state, String zip, String shipping, String cardnum, String expire, String security) {
+    public Order(String first_name, String last_name, String phoneNum, String address, String city, String state, String zip, String shipping, String cardnum, String expire, String security, String cartitems, String total) {
         this.firstName = first_name;
         this.lastName = last_name;
         this.phoneNum = phoneNum;
@@ -40,6 +42,8 @@ public class Order {
         this.ccn = cardnum;
         this.exp = expire;
         this.cvv = security;
+        this.cartitems = cartitems;
+        this.total = total;
     }
     
     public String getFirstName() {
@@ -128,6 +132,22 @@ public class Order {
 
     public void setCvv(String cvv) {
         this.cvv = cvv;
+    }
+    
+    public String getCartItems() {
+        return cartitems;
+    }
+
+    public void setCartItems(String cartitems) {
+        this.cartitems = cartitems;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
     }
     
 }

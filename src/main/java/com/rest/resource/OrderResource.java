@@ -36,10 +36,10 @@ public class OrderResource {
             @FormParam("phone") String phone, @FormParam("address") String address, @FormParam("city") String city,
             @FormParam("state") String state, @FormParam("zip") String zip, @FormParam("shipping") String shipping,
             @FormParam("cardnum") String cardnum, @FormParam("expire") String expire,
-            @FormParam("security") String security) throws ClassNotFoundException, SQLException {
+            @FormParam("security") String security, @FormParam("cartitems") String cartitems, @FormParam("total") String total) throws ClassNotFoundException, SQLException {
 
         Order order = new Order(first_name, last_name, phone, address, city, state, zip, shipping, cardnum, expire,
-                security);
+                security, cartitems, total);
         if (OrderService.AddOrder(order)) {
             return Response.ok().entity("Order Added Successfully").build();
         }
