@@ -7,9 +7,7 @@
 <body>
 
 <ul>
-      <li><a href="about.jsp">About</a></li>
-      <li><a class="active" href="checkout.html">Check Out</a></li>
-      <li><a href="storePage">Store</a></li>
+      <li><a class="active" onclick="emptyTable()">Return to Store</a></li>
 	  <li><a>Kati Tran 33574122</a></li>
           <li><a>Jae Yoon Oh 41812159</a></li>
           <li><a>Vivian Nguyen 84955920</a></li>
@@ -38,7 +36,7 @@
         <h3>Payment Information</h3>
         <h4>Card Information</h4>
         <p><b>Card No.: </b> <span id="creditCardNunber">1111-1111-1111-1111</span>  </p>
-        <p><b>Valid: </b>   ex   <b>CVV:</b> <span id="ccv">ccv</span>  </p>
+        <p><b>Valid: </b>   <span id="expire">ex</span>   <b>CVV:</b> <span id="ccv">ccv</span>  </p>
         </div>
 
     </div>
@@ -80,6 +78,10 @@
                     document.getElementById("zip").innerHTML = data.zip;
                     document.getElementById("phone").innerHTML = data.phoneNum;
                     document.getElementById("shipping").innerHTML = data.shippingMethod;
+                    
+                    document.getElementById("creditCardNunber").innerHTML = data.ccn;
+                    document.getElementById("expire").innerHTML = data.exp;
+                    document.getElementById("ccv").innerHTML = data.cvv;
                 }
             }
         };
@@ -89,6 +91,20 @@
 
     getCustomerInfo();
     getCartItems();
+    
+    function emptyTable(){
+       var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            window.location.href = "storePage";
+          } else {
+            console.log("error");
+          }
+        };
+        xhttp.open("DELETE", "rest/cart/delete", true);
+        xhttp.send();
+    }
+    
 </script>
 </body>
 </html>

@@ -67,6 +67,17 @@ public class ProductService {
 
     }
 
+    public static boolean ClearCart() throws ClassNotFoundException, SQLException {
+
+        String sql = "DELETE FROM shoppingcart";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Database database = new Database();
+        database.openConnection();
+        Connection connection = database.conn;
+        return Database.performDBUpdate(connection, sql);
+
+    }
+
     public static ArrayList<Product> GetCartItems() throws ClassNotFoundException, SQLException {
         Database db = new Database();
         db.openConnection();

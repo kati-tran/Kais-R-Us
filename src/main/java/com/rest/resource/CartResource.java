@@ -15,6 +15,7 @@ import com.rest.service.ProductService;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -73,5 +74,22 @@ public class CartResource {
         Order o = OrderService.GetMostRecentOrder();
         return Response.ok(o).build();
     }
+    
+    //This method represents a DELETE request where the id is provided as a path parameter and the request body is provided in JSON
+    @DELETE
+    @Path("/delete")
+    @Consumes({MediaType.APPLICATION_FORM_URLENCODED, MediaType.APPLICATION_JSON})
+    public Response deleteTodo() throws ClassNotFoundException, SQLException {
+
+        // This calls the JDBC method which in turn calls the DELETE SQL command.
+        if(ProductService.ClearCart()) {
+            return Response.ok().entity("TODO Deleted Successfully").build();
+        }
+
+        //return Response.ok().entity("Die in a hole").build();
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+
+    }
+    
 }
 
