@@ -15,10 +15,12 @@
 
 	<ul>
 	  <li><a class="active" href="about.jsp">About</a></li>
-          <li><a href="checkout">Check Out</a></li>
+          <li><a href="checkout.html">Check Out</a></li>
 	  <li><a href="storePage">Store</a></li>
 	  <li><a>Kati Tran 33574122</a></li>
           <li><a>Jae Yoon Oh 41812159</a></li>
+          <li><a>Vivian Nguyen 84955920</a></li>
+          <li><a>Austin Helmholz 10314895</a></li>
 	</ul>
 
     <div class="about-section">
@@ -32,27 +34,41 @@
 
 	  <div class="column">
 	    <div class="card">
-	      <img src="images/smug.png" alt="Kati" style="width:100%">
+	      <img src="images/kaiser.jpg" alt="Kaiser" style="width:100%">
 	      <div class="container">
 	        <h2>Kati Tran</h2>
-	        <p class="title">Janitor</p>
+	        <p class="title">CEO and Founder</p>
 	        <p>UCInetID: katit1</p>
 	        <p>StudentID: 33574122</p>
 	        <p>katit1@uci.edu</p>
-	        <p><button class="button">Contact (Sorry I don't like photos of me)</button></p>
+	        <p><button class="button" onclick="treats()">Send Treats</button></p>
 	      </div>
 	    </div>
 	  </div>
 
 	  <div class="column">
 	    <div class="card">
-	      <img src="images/kaiser.jpg" alt="Kaiser" style="width:100%">
+	      <img src="images/smug.png" alt="Kati" style="width:100%">
 	      <div class="container">
-	        <h2>Kaiser</h2>
-	        <p class="title">CEO and Founder</p>
-	        <p>Entrepreneur. Fluffy. Sheds too much.</p>
-	        <p>Likes new things. Materialistic.</p>
-	        <p>A good boy.</p>
+	        <h2>Vivian Nguyen</h2>
+	        <p class="title">Software Engineer</p>
+	        <p>UCInetID: nguyev12</p>
+	        <p>StudentID: 84955920</p>
+	        <p>nguyev12@uci.edu</p>
+	        <p><button class="button" onclick="treats()">Send Treats</button></p>
+	      </div>
+	    </div>
+	  </div>
+            
+	  <div class="column">
+	    <div class="card">
+	      <img src="images/smug.png" alt="Kati" style="width:100%">
+	      <div class="container">
+	        <h2>Austin Helmholz</h2>
+	        <p class="title">Software Engineer</p>
+	        <p>UCInetID: ahelmhol</p>
+	        <p>StudentID: 10314895</p>
+	        <p>ahelmhol@uci.edu</p>
 	        <p><button class="button" onclick="treats()">Send Treats</button></p>
 	      </div>
 	    </div>
@@ -63,7 +79,7 @@
 	      <img src="images/smug.png" alt="Leylah" style="width:100%">
 	      <div class="container">
 	        <h2>Jae Yoon Oh</h2>
-	        <p class="title">Co-Founder</p>
+	        <p class="title">Software Engineer</p>
 	        <p>UCInetID: jaeyo</p>
 	        <p>StudentID: 41812159</p>
 	        <p>jaeyo@uci.edu</p>

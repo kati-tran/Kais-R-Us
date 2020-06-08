@@ -7,10 +7,12 @@
   <body>
     <ul>
       <li><a href="about.jsp">About</a></li>
-      <li><a class="active" href="checkout">Check Out</a></li>
+      <li><a class="active" href="checkout.html">Check Out</a></li>
       <li><a href="storePage">Store</a></li>
-      <li><a>Kati Tran 33574122</a></li>
-      <li><a>Jae Yoon Oh 41812159</a></li>
+	  <li><a>Kati Tran 33574122</a></li>
+          <li><a>Jae Yoon Oh 41812159</a></li>
+          <li><a>Vivian Nguyen 84955920</a></li>
+          <li><a>Austin Helmholz 10314895</a></li>
     </ul>
 
     <div class="about-section">
@@ -188,13 +190,13 @@
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
-            window.location.href = "index.jsp";
+            window.location.href = "receipt.html";
           } else {
             console.log("error");
           }
         };
 
-        xhttp.open("POST", "rest/confirm", true);
+        xhttp.open("POST", "rest/confirm/", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(JSON.stringify(data));
       }

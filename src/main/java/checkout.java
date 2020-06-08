@@ -75,7 +75,7 @@ public class checkout extends HttpServlet {
 
             out.println("<ul>");
             out.println("<li><a href=\"about.jsp\">About</a></li>");
-            out.println("<li><a class=\"active\" href=\"checkout\">Check Out</a></li>");
+            out.println("<li><a class=\"active\" href=\"checkout.html\">Check Out</a></li>");
             out.println("<li><a href=\"storePage\">Store</a></li>");
             out.println("<li><a>Kati Tran 33574122</a></li>");
             out.println("<li><a>Jae Yoon Oh 41812159</a></li>");
