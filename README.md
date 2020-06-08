@@ -1,59 +1,56 @@
-# Project3
- 
 TEAM:
 
-Kati Tran 
--katit1
--33574122
--katit1@uci.edu
+Kati Tran -katit1 -33574122 -katit1@uci.edu
 
-Jae Yoon Oh 
--jaeyo
--41812159
--jaeyo@uci.edu
+Jae Yoon Oh -jaeyo -41812159 -jaeyo@uci.edu
 
+Vivian Nguyen -nguyev12 -84955920 -nguyev12@uci.edu
 
-KEY FILES:
+Austin Helmholz -ahelmhol -10314895 -ahelmhol@uci.edu
 
-- index.jsp: loads up the header page for the Store. Holds ajax function that sends
-	the item ID to the product details page.
+PROJECT 4 REQUIREMENTS:
 
-- storePage.java: servlet that dynamically loads up the store items taken from
-	the SQL database. Also shows the last 5 things viewed when returned to.
+REQ 1: 
 
-- about.jsp: contains the information of each team member
+- Reimplemented index.jsp as product list page to dynamically load all items
 
-- productDetails.java: returns the details of the item clicked and the option to add to cart.
-	Stores item name in a session so that storePage.java can grab it and show it. When Add to Cart
-	is clicked it triggers the servlet shoppingCart.java
+REQ 2: 
 
-	NOTE: This file is nested more into some folders than the other servlets are. This is because of the
-	connection with ajax.
+5 rest services in our project.
 
-- shoppingCart.java: stores all the items into a shopping cart session.
+1. CartResource.addToDo(Cart cart)
+i.    POST
+ii.   http://localhost:8080/FirstIAE-master/rest/cart
+iii.  Sample response with one "Thanksgiving Leftovers" added to cart.
+[{"color":"Brown","descrip":"For when those big sad eyes keep lookin at you for a little bite. Now distract them with THIS! (fool-proof. very trustable. 10/10 dogs recommend) Very crunchy and smells like home. Plush.","id":"item2","name":"Thanksgiving Leftovers","picture":"images/sandwich1.jpg","picture2":"images/sandwich2.jpg","price":10,"size":"5'W x 7.5'D x 5'H","type":"Plush"}]
 
-- checkout.java: When the Check Out tab is clicked, this servlet will show all the items in the shopping cart
-	as well as their prices and the total price. It also has the order form that checks for bad information.
-	Note: if the user is not yet ready to order, they can easily return to the store and add more items. Stores
-	the total in a session.
+2. CartResource.getCartItems()
+i.    GET
+ii.   http://localhost:8080/FirstIAE-master/rest/cart
 
-- forwardOrder.java: When an order form is accepted, it is sent to this servlet that stores the user's order information
-	into the SQL database. Then it forwards the page to orderConfirm.java
+[{"color":"Brown","descrip":"For when those big sad eyes keep lookin at you for a little bite. Now distract them with THIS! (fool-proof. very trustable. 10/10 dogs recommend) Very crunchy and smells like home. Plush.","id":"item2","name":"Thanksgiving Leftovers","picture":"images/sandwich1.jpg","picture2":"images/sandwich2.jpg","price":10,"size":"5'W x 7.5'D x 5'H","type":"Plush"}]
 
-- orderConfirm.java: the order confirmation servlet. Shows all of the data and the items purchased. It also deletes the shopping
-	cart session and also the total session so that the store can be used again with new information.
+3. CartResource.getCustomerInfo()
+i.    GET
+ii.   http://localhost:8080/FirstIAE-master/rest/cart/receipt
+{"ccn":"1234-1234-1234-1234","city":"Irvine","cvv":"123","exp":"4/21","firstName":"John","lastName":"Doe","phoneNum":"123-123-1234","shippingMethod":"Overnight Shipping","state":"CA","street":"123 starbucks street","zip":"92602"}
 
+4. OrderResource.addConfirm(Order order)
+i.    POST
+ii. http://localhost:8080/FirstIAE-master/rest/confirm/
 
-PROJECT 3 REQUIREMENTS:
+(`FIRST_NAME`, `LAST_NAME`, `PHONE_NUMBER`, `STREET`, `CITY`, `STATE`, `ZIP`, `SHIPPING_SPEED`, `CCN`, `EXP`, `CVV`) VALUES
+('John', 'Doe', '123-123-1234', '123 starbucks street', 'irvine', 'CA', '92602', 'Overnight Shipping', '1234-1234-1234-1234', '4/21', '123');
 
-1. index.jsp shows the html of the homepage without the items. storePage.java grabs from the database and dynamically
-	renders them with index.jsp. storePage.java shows the last 5 items viewed at the bottom of the page by taking from a session that was 
-	created in productDetails.java. storePage.java uses _include_ for the the index.jsp file.
+5. ProductResource.getProductById(id)
+i.    GET
+ii. http://localhost:8080/FirstIAE-master/rest/product/item1
+{"color":"Green","descrip":"This is actually a crocodile. A plushy friend for your friend that contains even a squeaky ball inside! So if the toy     were to be destroyed, there's still time to play. Plush.","id":"item1","name":"See ya later, Alligator","picture":"images/croc1.png","picture2":"images/croc2.png","price":10,"size":"3.75'W x 7.5'D x 4'H","type":"Plush"}
 
-2. productDetails.java gets the item id from storePage.java and grabs the appropriate data from the database. It then
-	shows all of the items details onto the page. There is no order form, only the button Add to Cart that stores the item
-	into a session with shoppingCart.java. 
+6. CartResource.deleteTodo()
+i. DELETE
+ii. http://localhost:8080/FirstIAE-master/rest/cart/delete
 
-3. checkout.java shows all the products in the shopping cart and the total price. It also contains an order form to fill out with
-	 name, shipping address, phone number, credit card information, etc. Upon sending the data, forwardOrder.java submits the order 
-	 for storage in the backend database. Then it forwards to the orderConfirm.java page using _forward_ to do so.
+REQ 3:
+
+Databases implemented with Database.java to interact with rest services mentioned above. 
