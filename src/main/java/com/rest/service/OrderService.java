@@ -28,7 +28,7 @@ public class OrderService {
         Connection connection = database.conn;
         return Database.performDBUpdate(connection, sql, order.getFirstName(), order.getLastName(), order.getPhoneNum(),
                 order.getStreet(), order.getCity(), order.getState(), order.getZip(), order.getShippingMethod(),
-                order.getCcn(), order.getExp(), order.getCvv(), order.getCartItems(), order.getTotal());
+                order.getCcn(), order.getExp(), order.getCvv(), order.getCartitems(), order.getTotal());
 
     }
 

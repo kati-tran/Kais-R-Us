@@ -24,130 +24,127 @@ public class Order {
     String cvv;
     String cartitems;
     String total;
-    //TODO ADD SHOPPING CART
-
 
     public Order() {
     }
 
-    public Order(String first_name, String last_name, String phoneNum, String address, String city, String state, String zip, String shipping, String cardnum, String expire, String security, String cartitems, String total) {
-        this.firstName = first_name;
-        this.lastName = last_name;
+    public Order(String firstName, String lastName, String phoneNum, String street, String city, String state, String zip, String shippingMethod, String ccn, String exp, String cvv, String cartitems, String total) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phoneNum = phoneNum;
-        this.street = address;
+        this.street = street;
         this.city = city;
         this.state = state;
         this.zip = zip;
-        this.shippingMethod = shipping;
-        this.ccn = cardnum;
-        this.exp = expire;
-        this.cvv = security;
+        this.shippingMethod = shippingMethod;
+        this.ccn = ccn;
+        this.exp = exp;
+        this.cvv = cvv;
         this.cartitems = cartitems;
         this.total = total;
     }
-    
+
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getPhoneNum() {
         return phoneNum;
-    }
-
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
     }
 
     public String getStreet() {
         return street;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
     public String getCity() {
         return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getState() {
         return state;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getZip() {
         return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
     }
 
     public String getShippingMethod() {
         return shippingMethod;
     }
 
-    public void setShippingMethod(String shippingMethod) {
-        this.shippingMethod = shippingMethod;
-    }
-
     public String getCcn() {
         return ccn;
-    }
-
-    public void setCcn(String ccn) {
-        this.ccn = ccn;
     }
 
     public String getExp() {
         return exp;
     }
 
-    public void setExp(String exp) {
-        this.exp = exp;
-    }
-
     public String getCvv() {
         return cvv;
     }
 
-    public void setCvv(String cvv) {
-        this.cvv = cvv;
-    }
-    
-    public String getCartItems() {
+    public String getCartitems() {
         return cartitems;
-    }
-
-    public void setCartItems(String cartitems) {
-        this.cartitems = cartitems;
     }
 
     public String getTotal() {
         return total;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public void setShippingMethod(String shippingMethod) {
+        this.shippingMethod = shippingMethod;
+    }
+
+    public void setCcn(String ccn) {
+        this.ccn = ccn;
+    }
+
+    public void setExp(String exp) {
+        this.exp = exp;
+    }
+
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
+    }
+
+    public void setCartitems(String cartitems) {
+        this.cartitems = cartitems;
+    }
+
     public void setTotal(String total) {
         this.total = total;
     }
-    
 }
