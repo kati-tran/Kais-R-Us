@@ -49,7 +49,7 @@ public class OrderService {
             order.setCcn(results.getString("CCN"));
             order.setExp(results.getString("EXP"));
             order.setCvv(results.getString("CVV"));
-            order.setCartItems(results.getString("CONTENTS"));
+            order.setCartitems(results.getString("CONTENTS"));
             order.setTotal(results.getString("TOTAL_PRICE"));
         }
         db.closeConnection();
